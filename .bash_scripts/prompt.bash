@@ -11,7 +11,8 @@ ColorOff="\[\033[0m\]"
 Hostname="\h"
 
 # Truncate pwd
-export PROMPT_COMMAND='CurDir=$(_pwd_short)'
+#export PROMPT_COMMAND='CurDir=$(_pwd_short)'
+export PROMPT_COMMAND='CurDir=`pwd`'
 
 # Export the prompt
 export PS1=$Gray'$(_current_venv)'$ColorOff$DarkGray$Hostname$ColorOff'$(git branch &>/dev/null;\
@@ -21,7 +22,7 @@ if [ $? -eq 0 ]; then \
         echo "'$LightGray'"$(__git_ps1 " [%s]"); \
     else \
         echo "'$Red'"$(__git_ps1 " {%s}"); \
-    fi) '$Yellow'$CurDir'$ColorOff'\$ "; \
+    fi) '$Yellow'$CurDir'$ColorOff'\n\$ "; \
 else \
-    echo " '$Yellow'$CurDir'$ColorOff'\$ "; \
+    echo " '$Yellow'$CurDir'$ColorOff'\n\$ "; \
 fi)'

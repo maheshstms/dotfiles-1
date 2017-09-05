@@ -88,6 +88,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
 Plugin 'davidhalter/jedi-vim'
+
 if has('lua') && (v:version > 703 || v:version == 703 && has('patch885'))
     Plugin 'Shougo/neocomplete.vim'
 else
@@ -190,3 +191,15 @@ silent! colorscheme jellybeans
 " Use 256 colors in color schemes
 set t_Co=256
 set term=screen-256color
+
+
+"Bundle 'ternjs/tern_for_vim'
+"let g:tern_show_argument_hints='on_hold'
+"let g:tern_map_keys=1
+
+let g:nodejs_complete_config = {
+            \  'js_compl_fn': 'jscomplete#CompleteJS',
+            \  'max_node_compl_len': 15
+            \}
+
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif

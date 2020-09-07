@@ -50,7 +50,7 @@ set nosmartindent
 au BufRead,BufNewFile *.html,*.css set textwidth=0
 
 " Use two-space tabs for javascrit
-autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
+"autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 " Ignore compiled python
 set wildignore+=*.pyc
@@ -203,3 +203,18 @@ let g:nodejs_complete_config = {
             \}
 
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+
+"For TS files
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+""" FOR JS and TS
+" Register tag name associated the filetype
+" call jspretmpl#register_tag('gql', 'graphql')
+au BufReadPost *.ts set syntax=javascript
+autocmd FileType javascript JsPreTmpl html
+autocmd FileType typescript JsPreTmpl markdown
+autocmd FileType typescript syn clear foldBraces " For leafgarland/typescript-vim users only. Please see #1 for details.
+

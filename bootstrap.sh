@@ -6,7 +6,7 @@ backup_file() {
 }
 
 backup_directory() {
-    test -d $HOME/$1.dotbackup && echo -n "~/$1.dotbackup: " && rm -rI $HOME/$1.dotbackup
+    test -d $HOME/$1.dotbackup && echo -n "~/$1.dotbackup: " && rm -rf $HOME/$1.dotbackup
     test -d $HOME/$1 && cp -LR $HOME/$1 $HOME/$1.dotbackup && rm -rf $HOME/$1
     true
 }
@@ -173,6 +173,7 @@ do
         --no-vim) NO_VIM=1; shift; ;;
         --no-tmux) NO_TMUX=1; shift; ;;
         --no-ipython) NO_IPYTHON=1; shift; ;;
+        #--no-node) NO_NODE=1; shift; ;;
         --) shift; break; ;;
         -*) printf >&2 'WARNING: Unknown option (ignored): %s\n' "$1"; shift; ;;
         *) break; ;;
@@ -218,5 +219,8 @@ fi
 if [ "$NO_VIM" != 1 ]; then
     configure_vim
 fi
+#if [ "$NO_NODE" != 1 ]; then
+#    configure_node
+#fi
 
 echo "Done."
